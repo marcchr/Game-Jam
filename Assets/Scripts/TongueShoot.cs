@@ -8,6 +8,7 @@ public class TongueShoot : Singleton<TongueShoot>
     [SerializeField] private GameObject targetPos;
     [SerializeField] private GameObject startPos;
     [SerializeField] private float tongueShootSpeed;
+    [SerializeField] private float tongueStrength;
 
     public bool isShooting = false;
     public Button shootButton;
@@ -23,11 +24,10 @@ public class TongueShoot : Singleton<TongueShoot>
     {
         isShooting = true;
         shootButton.interactable = false;
-        Vector3 pointA = transform.position;
         while (isShooting == true)
         {
-            yield return StartCoroutine(MoveObject(transform, pointA, targetPos.transform.position, tongueShootSpeed));
-            yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed));
+            yield return StartCoroutine(MoveObject(transform, transform.position, targetPos.transform.position, tongueShootSpeed, tongueStrength));
+            yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed, 1));
             isShooting = false;
             shootButton.interactable = true;
         }
@@ -51,11 +51,11 @@ public class TongueShoot : Singleton<TongueShoot>
         */
     }
 
-    IEnumerator MoveObject(Transform thisTransform, Vector3 startPosition, Vector3 endPosition, float time)
+    IEnumerator MoveObject(Transform thisTransform, Vector3 startPosition, Vector3 endPosition, float time, float strength)
     {
         float i = 0.0f;
         float rate = 1.0f / time;
-        while (i < 1.0f)
+        while (i < 1.0f * strength)
         {
             i += Time.deltaTime * rate;
             thisTransform.position = Vector3.Lerp(startPosition, endPosition, i);
