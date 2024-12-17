@@ -7,23 +7,12 @@ public class TongueShoot : Singleton<TongueShoot>
     [SerializeField] private GameObject targetPos;
     [SerializeField] private GameObject startPos;
     [SerializeField] private float tongueShootSpeed;
-    [SerializeField] private float tongueRetractSpeed;
 
     public bool isShooting = false;
-    public bool isRetracting = false;
 
 
     private void Update()
     {
-        if (isRetracting == true)
-        {
-            float _time = 0;
-            _time += Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, startPos.transform.position, _time * tongueRetractSpeed);
-            isShooting = false;
-        }
-
-        isRetracting = false;
 
 
 
@@ -31,7 +20,17 @@ public class TongueShoot : Singleton<TongueShoot>
 
     IEnumerator Shoot()
     {
-        float _time = 0;
+        isShooting = true;
+        Vector3 pointA = transform.position;
+        while (isShooting == true)
+        {
+            yield return StartCoroutine(MoveObject(transform, pointA, targetPos.transform.position, tongueShootSpeed));
+            yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed));
+            isShooting = false;
+
+        }
+
+        /* float _time = 0;
         Vector3 target = targetPos.transform.position;
 
         while (_time <= 1f/tongueShootSpeed)
@@ -46,11 +45,26 @@ public class TongueShoot : Singleton<TongueShoot>
         }
 
         isRetracting = true;
+
+        */
+    }
+
+    IEnumerator MoveObject(Transform thisTransform, Vector3 startPosition, Vector3 endPosition, float time)
+    {
+        float i = 0.0f;
+        float rate = 1.0f / time;
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            thisTransform.position = Vector3.Lerp(startPosition, endPosition, i);
+            yield return null;
+        }
     }
 
     public void ShootTongue()
     {
         StartCoroutine(Shoot());
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

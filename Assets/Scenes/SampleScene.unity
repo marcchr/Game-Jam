@@ -1453,10 +1453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {fileID: 629823941}
   startPos: {fileID: 1076354838}
-  tongueShootSpeed: 3
-  tongueRetractSpeed: 15
+  tongueShootSpeed: 0.3
   isShooting: 0
-  isRetracting: 0
 --- !u!58 &1952365260
 CircleCollider2D:
   m_ObjectHideFlags: 0
