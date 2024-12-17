@@ -14,11 +14,42 @@ public class TongueShoot : Singleton<TongueShoot>
     public bool isShooting = false;
     public Button shootButton;
 
+    public float hungerDuration = 30f;
+    public float hungerTimer = 30f;
+    private bool isHungry = true;
+    [SerializeField] Image _hungerFill;
+    public float dyingTimer = 0f;
+    public float dyingDuration = 10f;
+
     private void Update()
     {
+        if (isHungry == true)
+        {
+            hungerTimer -= Time.deltaTime;
+            _hungerFill.fillAmount = hungerTimer / hungerDuration;
+        }
+
+        if (hungerTimer <= 0)
+        {
+            hungerTimer = 0;
+            dyingTimer += Time.deltaTime;
+            if (dyingTimer >= dyingDuration)
+            {
+                Kill();
+            }
+        }
 
 
+    }
 
+    public void Kill()
+    {
+        if (!GameManager.Instance.isGameOver)
+        {
+            GameManager.Instance.AssignSurvivalTime();
+            GameManager.Instance.AssignEnemiesKilled();
+            GameManager.Instance.GameOver();
+        }
     }
 
     IEnumerator Shoot(float strength)
@@ -34,23 +65,7 @@ public class TongueShoot : Singleton<TongueShoot>
             shootButton.interactable = true;
         }
 
-        /* float _time = 0;
-        Vector3 target = targetPos.transform.position;
-
-        while (_time <= 1f/tongueShootSpeed)
-        {
-            isShooting = true;
-            isRetracting = false;
-
-            _time += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos.transform.position, target, _time * tongueShootSpeed);
-            yield return null;
-
-        }
-
-        isRetracting = true;
-
-        */
+        
     }
 
     IEnumerator MoveObject(Transform thisTransform, Vector3 startPosition, Vector3 endPosition, float time, float strength)
@@ -76,16 +91,24 @@ public class TongueShoot : Singleton<TongueShoot>
         if (other.TryGetComponent<EnemyController>(out var enemy))
         {
             enemy.TakeDamage(1);
+            hungerTimer++;
+            dyingTimer = 0f;
         }
 
         if (other.TryGetComponent<RareEnemyController>(out var rareEnemy))
         {
             rareEnemy.TakeDamage(1);
+            hungerTimer = 30f;
+            dyingTimer = 0f;
+
         }
 
         if (other.TryGetComponent<BadEnemyController>(out var badEnemy))
         {
             badEnemy.TakeDamage(1);
+            hungerTimer+=0.5f;
+            dyingTimer = 0f;
+
         }
 
     }
