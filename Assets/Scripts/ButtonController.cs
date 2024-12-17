@@ -9,8 +9,6 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public float holdDuration = 3f;
     [SerializeField] Image _strengthFill;
 
-    public float strengthPoints = 0;
-
     private float holdTimer = 0;
     private bool buttonHeld = false;
 
@@ -21,10 +19,6 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             holdTimer += Time.deltaTime;
             _strengthFill.fillAmount = holdTimer / holdDuration;
 
-            if (holdTimer > holdDuration)
-            {
-                //strength = max (1)
-            }
         }
     }
 
@@ -38,7 +32,9 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         buttonHeld = false;
         holdTimer = 0;
+        TongueShoot.Instance.ShootTongue(_strengthFill.fillAmount);
         _strengthFill.fillAmount = 0;
+
     }
 }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class TongueShoot : Singleton<TongueShoot>
     [SerializeField] private GameObject targetPos;
     [SerializeField] private GameObject startPos;
     [SerializeField] private float tongueShootSpeed;
-    [SerializeField] private float tongueStrength;
+    public float tongueStrength;
 
     public bool isShooting = false;
     public Button shootButton;
@@ -20,10 +21,11 @@ public class TongueShoot : Singleton<TongueShoot>
 
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot(float strength)
     {
         isShooting = true;
         shootButton.interactable = false;
+        tongueStrength = strength;
         while (isShooting == true)
         {
             yield return StartCoroutine(MoveObject(transform, transform.position, targetPos.transform.position, tongueShootSpeed, tongueStrength));
@@ -63,9 +65,9 @@ public class TongueShoot : Singleton<TongueShoot>
         }
     }
 
-    public void ShootTongue()
+    public void ShootTongue(float strength)
     {
-        StartCoroutine(Shoot());
+        StartCoroutine(Shoot(strength));
 
     }
 
