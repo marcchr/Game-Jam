@@ -11,6 +11,8 @@ public class EnemyData : ScriptableObject
     [field: SerializeField] public float maxHealth { get; private set; }
     [field: SerializeField] public float searchRadius { get; private set; }
     [field: SerializeField] public float movementFrequency { get; private set; }
+    [field: SerializeField] public int pointsWorth { get; private set; }
+
 
 
 }

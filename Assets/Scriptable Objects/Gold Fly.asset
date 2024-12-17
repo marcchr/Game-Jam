@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4a79d317dbd23145a65c97a1aacaf22, type: 3}
-  m_Name: Fly
+  m_Name: Gold Fly
   m_EditorClassIdentifier: 
-  <EnemyPrefab>k__BackingField: {fileID: 5506259663874065146, guid: 2197a7e9a82038a4d9933b2fd2c9699a, type: 3}
-  <movementSpeed>k__BackingField: 7
-  <maxHealth>k__BackingField: 1
-  <searchRadius>k__BackingField: 1
-  <movementFrequency>k__BackingField: 0.1
-  <pointsWorth>k__BackingField: 1
+  <EnemyPrefab>k__BackingField: {fileID: 0}
+  <movementSpeed>k__BackingField: 0
+  <maxHealth>k__BackingField: 0
+  <searchRadius>k__BackingField: 0
+  <movementFrequency>k__BackingField: 0
+  <pointsWorth>k__BackingField: 0

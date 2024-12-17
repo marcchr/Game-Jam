@@ -25,6 +25,9 @@ public class GameManager : Singleton<GameManager>
     public int killCount;
     public TextMeshProUGUI killCountText;
 
+    public int currentScore;
+    public TextMeshProUGUI currentScoreText;
+
     //public TextMeshProUGUI survivalTimeText;
     //public TextMeshProUGUI enemiesKilledText;
 
@@ -34,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     {
         UpdateStopwatch();
         UpdateKillCountText();
+        UpdateCurrentScore();
     }
 
     void UpdateStopwatch()
@@ -52,5 +56,10 @@ public class GameManager : Singleton<GameManager>
     void UpdateKillCountText()
     {
         killCountText.text = "Flies eaten: " + killCount.ToString();
+    }
+
+    void UpdateCurrentScore()
+    {
+        currentScoreText.text = currentScore.ToString();
     }
 }

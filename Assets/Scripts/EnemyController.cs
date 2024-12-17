@@ -54,6 +54,7 @@ public class EnemyController : MonoBehaviour
         {
             Die();
             GameManager.Instance.killCount++;
+            GameManager.Instance.currentScore += Data.pointsWorth;
             _spawner.ReturnEnemyToPool(this);
 
         }

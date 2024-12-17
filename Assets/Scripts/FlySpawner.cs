@@ -6,7 +6,6 @@ using UnityEngine.Pool;
 public class FlySpawner : MonoBehaviour
 {
     Queue<EnemyController> _availableEnemies = new();
-    // public GameObject enemyToPool;
 
     [SerializeField] EnemyController _enemyPrefab;
     [SerializeField] EnemyData Data;
@@ -14,7 +13,6 @@ public class FlySpawner : MonoBehaviour
     [SerializeField] int _enemyLimit;
     [SerializeField] int _spawnInterval;
 
-    //github testing hello!
     private void Start()
     {
         InstantiateEnemies(Data);

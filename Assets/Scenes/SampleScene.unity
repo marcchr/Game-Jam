@@ -1133,6 +1133,8 @@ MonoBehaviour:
   stopwatchDisplay: {fileID: 1973180438}
   killCount: 0
   killCountText: {fileID: 726484478}
+  currentScore: 0
+  currentScoreText: {fileID: 841478689}
   isGameOver: 0
 --- !u!1 &1016557854
 GameObject:
