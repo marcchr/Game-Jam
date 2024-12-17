@@ -21,6 +21,8 @@ public class TongueShoot : Singleton<TongueShoot>
     public float dyingTimer = 0f;
     public float dyingDuration = 10f;
 
+    public Animator _animator;
+
     private void Update()
     {
         if (isHungry == true)
@@ -57,15 +59,21 @@ public class TongueShoot : Singleton<TongueShoot>
         isShooting = true;
         shootButton.interactable = false;
         tongueStrength = strength;
+
+        _animator.SetBool("isEating", true);
+
         while (isShooting == true)
         {
             yield return StartCoroutine(MoveObject(transform, transform.position, targetPos.transform.position, tongueShootSpeed, tongueStrength));
             yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed, 1));
             isShooting = false;
             shootButton.interactable = true;
+
+            _animator.SetBool("isEating", false);
+
         }
 
-        
+
     }
 
     IEnumerator MoveObject(Transform thisTransform, Vector3 startPosition, Vector3 endPosition, float time, float strength)
@@ -98,7 +106,7 @@ public class TongueShoot : Singleton<TongueShoot>
         if (other.TryGetComponent<RareEnemyController>(out var rareEnemy))
         {
             rareEnemy.TakeDamage(1);
-            hungerTimer = 30f;
+            hungerTimer = hungerDuration;
             dyingTimer = 0f;
 
         }
