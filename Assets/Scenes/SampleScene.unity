@@ -388,9 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eec5f5f4a3f3024da3aa821f4f1029b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyToPool: {fileID: 5502891565340108254, guid: 2197a7e9a82038a4d9933b2fd2c9699a, type: 3}
-  amountToPool: 10
-  spawnFrequency: 1
+  _enemyPrefab: {fileID: 5506259663874065146, guid: 2197a7e9a82038a4d9933b2fd2c9699a, type: 3}
+  Data: {fileID: 11400000, guid: 22c9d0660ef11d34fb62bee10d05c93b, type: 2}
+  _enemyLimit: 10
+  _spawnInterval: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,8 +868,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182294237}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2770274, y: 3.8928444, z: 0.446188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

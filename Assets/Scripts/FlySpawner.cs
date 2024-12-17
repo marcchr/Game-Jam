@@ -5,44 +5,47 @@ using UnityEngine.Pool;
 
 public class FlySpawner : MonoBehaviour
 {
-    public Queue<GameObject> enemyPool = new();
-    public GameObject enemyToPool;
-    public int amountToPool;
-    public int spawnFrequency;
-    //github testing
+    Queue<EnemyController> _availableEnemies = new();
+    // public GameObject enemyToPool;
+
+    [SerializeField] EnemyController _enemyPrefab;
+    [SerializeField] EnemyData Data;
+
+    [SerializeField] int _enemyLimit;
+    [SerializeField] int _spawnInterval;
+
+    //github testing hello!
     private void Start()
     {
-        GameObject fly;
-        for (int i = 0; i < amountToPool; i++)
-        {
-            fly = Instantiate(enemyToPool);
-            fly.SetActive(false);
-            enemyPool.Enqueue(fly);
-        }
-
-        StartCoroutine(SpawnFlies());
+        InstantiateEnemies(Data);
+        InvokeRepeating(nameof(SpawnEnemy), 1f, _spawnInterval);
     }
 
-    public void ReturnEnemyToPool(GameObject enemy)
+    private void InstantiateEnemies(EnemyData data)
     {
-        enemyPool.Enqueue(enemy);
+        Data = data;
+
+        for (int i = 0; i < _enemyLimit; i++)
+        {
+            //spawn enemies
+            var enemy = Instantiate(_enemyPrefab, transform);
+            enemy.Initialize(this, data);
+            enemy.gameObject.SetActive(false);
+            _availableEnemies.Enqueue(enemy);
+        }
+    }
+
+    public void ReturnEnemyToPool(EnemyController enemy)
+    {
+        _availableEnemies.Enqueue(enemy);
     }
 
     private void SpawnEnemy()
     {
         var spawnPosition = transform.position;
-        var enemy = enemyPool.Dequeue();
+        var enemy = _availableEnemies.Dequeue();
         enemy.transform.position = spawnPosition;
         enemy.gameObject.SetActive(true);
     }
 
-    IEnumerator SpawnFlies()
-    {
-        while (gameObject.activeSelf)
-        {
-            SpawnEnemy();
-            yield return new WaitForSeconds(spawnFrequency);
-        }
-        
-    }
 }

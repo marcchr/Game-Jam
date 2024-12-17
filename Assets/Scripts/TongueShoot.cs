@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TongueShoot : MonoBehaviour
+public class TongueShoot : Singleton<TongueShoot>
 {
     [SerializeField] private GameObject targetPos;
     [SerializeField] private GameObject startPos;
@@ -54,9 +54,9 @@ public class TongueShoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.TryGetComponent<EnemyController>(out var enemy))
         {
-            other.gameObject.SetActive(false);
+            enemy.TakeDamage(1);
         }
     }
     
