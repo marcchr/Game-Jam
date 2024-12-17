@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TongueShoot : Singleton<TongueShoot>
 {
@@ -9,7 +10,7 @@ public class TongueShoot : Singleton<TongueShoot>
     [SerializeField] private float tongueShootSpeed;
 
     public bool isShooting = false;
-
+    public Button shootButton;
 
     private void Update()
     {
@@ -21,13 +22,14 @@ public class TongueShoot : Singleton<TongueShoot>
     IEnumerator Shoot()
     {
         isShooting = true;
+        shootButton.interactable = false;
         Vector3 pointA = transform.position;
         while (isShooting == true)
         {
             yield return StartCoroutine(MoveObject(transform, pointA, targetPos.transform.position, tongueShootSpeed));
             yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed));
             isShooting = false;
-
+            shootButton.interactable = true;
         }
 
         /* float _time = 0;
