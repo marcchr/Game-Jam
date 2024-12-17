@@ -499,8 +499,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 5506259663874065146, guid: 2197a7e9a82038a4d9933b2fd2c9699a, type: 3}
   Data: {fileID: 11400000, guid: 22c9d0660ef11d34fb62bee10d05c93b, type: 2}
+  _rareEnemyPrefab: {fileID: 6510693675303613708, guid: 3eb367fe701071542a379a8e85e56433, type: 3}
+  RareData: {fileID: 11400000, guid: ad995cec09eccbb49a56fefca58aecba, type: 2}
+  _badEnemyPrefab: {fileID: -6391937065345177499, guid: c243c5ca6f58df14daff4a7a732587d9, type: 3}
+  BadData: {fileID: 11400000, guid: b9959de9598521d4c9c5ad9b379460f0, type: 2}
   _enemyLimit: 10
   _spawnInterval: 1
+  _rareEnemyLimit: 1
+  _rareSpawnInterval: 10
+  _badEnemyLimit: 5
+  _badSpawnInterval: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

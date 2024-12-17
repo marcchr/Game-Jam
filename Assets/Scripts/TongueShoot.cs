@@ -77,6 +77,17 @@ public class TongueShoot : Singleton<TongueShoot>
         {
             enemy.TakeDamage(1);
         }
+
+        if (other.TryGetComponent<RareEnemyController>(out var rareEnemy))
+        {
+            rareEnemy.TakeDamage(1);
+        }
+
+        if (other.TryGetComponent<BadEnemyController>(out var badEnemy))
+        {
+            badEnemy.TakeDamage(1);
+        }
+
     }
-    
+
 }

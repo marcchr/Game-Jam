@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6586168769031320196}
   - component: {fileID: 654171327217363058}
   - component: {fileID: 4624680355645703892}
-  - component: {fileID: 6510693675303613708}
+  - component: {fileID: -6391937065345177499}
   m_Layer: 0
-  m_Name: Gold Fly
+  m_Name: Red Fly
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.9622642, g: 0.7418345, b: 0.31228194, a: 1}
+  m_Color: {r: 0.6886792, g: 0.18023376, b: 0.1650231, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6510693675303613708
+--- !u!114 &-6391937065345177499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5502891565340108254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70618712663326a4091c97a41a0bdba0, type: 3}
+  m_Script: {fileID: 11500000, guid: 43f318cba1f1fd247b2e0b40032a82f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: ad995cec09eccbb49a56fefca58aecba, type: 2}
+  Data: {fileID: 11400000, guid: b9959de9598521d4c9c5ad9b379460f0, type: 2}
   targetPos: {x: 0, y: 0, z: 0}
