@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
         if (_currentHealth <= 0f)
         {
             Die();
+            GameManager.Instance.killCount++;
             _spawner.ReturnEnemyToPool(this);
 
         }

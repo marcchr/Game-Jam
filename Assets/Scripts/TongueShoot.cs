@@ -23,6 +23,7 @@ public class TongueShoot : Singleton<TongueShoot>
             isShooting = false;
         }
 
+        isRetracting = false;
 
 
 
