@@ -63,6 +63,14 @@ public class RareEnemyController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bounds"))
+        {
+            Die();
+            _spawner.ReturnRareEnemyToPool(this);
+        }
+    }
 
 }
 

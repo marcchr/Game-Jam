@@ -142,6 +142,10 @@ public class GameManager : Singleton<GameManager>
 
     void UpdateCurrentScore()
     {
+        if (currentScore < 0)
+        {
+            currentScore = 0;
+        }
         currentScoreText.text = currentScore.ToString();
     }
 }
