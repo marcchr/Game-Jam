@@ -13,6 +13,8 @@ public class BadEnemyController : MonoBehaviour
     float _currentHealth;
     float _currentMovementSpeed;
 
+    [SerializeField] private AudioClip dieSoundClip;
+
     public void Initialize(FlySpawner spawner, EnemyData data)
     {
         _spawner = spawner;
@@ -52,6 +54,7 @@ public class BadEnemyController : MonoBehaviour
         if (_currentHealth <= 0f)
         {
             Die();
+            SoundFXManager.Instance.PlaySoundFXClip(dieSoundClip, transform, 1f);
             GameManager.Instance.killCount++;
             GameManager.Instance.currentScore += Data.pointsWorth;
             _spawner.ReturnBadEnemyToPool(this);

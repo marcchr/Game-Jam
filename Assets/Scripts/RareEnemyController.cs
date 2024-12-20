@@ -13,6 +13,9 @@ public class RareEnemyController : MonoBehaviour
     float _currentHealth;
     float _currentMovementSpeed;
 
+    [SerializeField] private AudioClip spawnSoundClip;
+    [SerializeField] private AudioClip dieSoundClip;
+
     public void Initialize(FlySpawner spawner, EnemyData data)
     {
         _spawner = spawner;
@@ -40,6 +43,7 @@ public class RareEnemyController : MonoBehaviour
     {
         while (_currentHealth > 0)
         {
+            SoundFXManager.Instance.PlaySoundFXClip(spawnSoundClip, transform, 1f);
             Vector3 randomPoint = Random.insideUnitCircle.normalized * Data.searchRadius;
             targetPos = new Vector3(transform.position.x + randomPoint.x, transform.position.y + randomPoint.y, 0);
             yield return new WaitForSeconds(Data.movementFrequency);
@@ -52,6 +56,7 @@ public class RareEnemyController : MonoBehaviour
         if (_currentHealth <= 0f)
         {
             Die();
+            SoundFXManager.Instance.PlaySoundFXClip(dieSoundClip, transform, 1f);
             GameManager.Instance.killCount++;
             GameManager.Instance.currentScore += Data.pointsWorth;
             _spawner.ReturnRareEnemyToPool(this);

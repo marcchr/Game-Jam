@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: b9959de9598521d4c9c5ad9b379460f0, type: 2}
   targetPos: {x: 0, y: 0, z: 0}
+  dieSoundClip: {fileID: 8300000, guid: b3c694c5e669fbb41aa41ed353e8f82f, type: 3}
 --- !u!95 &8905425359235673127
 Animator:
   serializedVersion: 5

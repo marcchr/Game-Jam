@@ -23,6 +23,8 @@ public class TongueShoot : Singleton<TongueShoot>
 
     public Animator _animator;
 
+    [SerializeField] private AudioClip shootSoundClip;
+
     private void Update()
     {
         if (isHungry == true)
@@ -64,12 +66,15 @@ public class TongueShoot : Singleton<TongueShoot>
 
         while (isShooting == true)
         {
+            SoundFXManager.Instance.PlaySoundFXClip(shootSoundClip, transform, 1f);
+
             yield return StartCoroutine(MoveObject(transform, transform.position, targetPos.transform.position, tongueShootSpeed, tongueStrength));
             yield return StartCoroutine(MoveObject(transform, transform.position, startPos.transform.position, tongueShootSpeed, 1));
             isShooting = false;
             shootButton.interactable = true;
 
             _animator.SetBool("isEating", false);
+            
 
         }
 
