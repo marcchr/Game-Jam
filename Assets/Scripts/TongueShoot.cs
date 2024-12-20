@@ -24,6 +24,9 @@ public class TongueShoot : Singleton<TongueShoot>
     public Animator _animator;
 
     [SerializeField] private AudioClip shootSoundClip;
+    [SerializeField] private AudioClip gameOverSoundClip;
+    [SerializeField] GameObject musicManager;
+
 
     private void Update()
     {
@@ -48,8 +51,12 @@ public class TongueShoot : Singleton<TongueShoot>
 
     public void Kill()
     {
+
         if (!GameManager.Instance.isGameOver)
         {
+            musicManager.SetActive(false);
+            SoundFXManager.Instance.PlaySoundFXClip(gameOverSoundClip, transform, 1f);
+            GameManager.Instance.HighScoreUpdate();
             GameManager.Instance.AssignSurvivalTime();
             GameManager.Instance.AssignEnemiesKilled();
             GameManager.Instance.GameOver();
@@ -104,6 +111,7 @@ public class TongueShoot : Singleton<TongueShoot>
         if (other.TryGetComponent<EnemyController>(out var enemy))
         {
             enemy.TakeDamage(1);
+            GetComponent<ParticleSystem>().Play();
             hungerTimer++;
             dyingTimer = 0f;
         }
@@ -111,6 +119,7 @@ public class TongueShoot : Singleton<TongueShoot>
         if (other.TryGetComponent<RareEnemyController>(out var rareEnemy))
         {
             rareEnemy.TakeDamage(1);
+            GetComponent<ParticleSystem>().Play();
             hungerTimer = hungerDuration;
             dyingTimer = 0f;
 
@@ -119,7 +128,8 @@ public class TongueShoot : Singleton<TongueShoot>
         if (other.TryGetComponent<BadEnemyController>(out var badEnemy))
         {
             badEnemy.TakeDamage(1);
-            hungerTimer+=0.5f;
+            GetComponent<ParticleSystem>().Play();
+            hungerTimer += 0.5f;
             dyingTimer = 0f;
 
         }

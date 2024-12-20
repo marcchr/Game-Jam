@@ -27,12 +27,15 @@ public class FlySpawner : MonoBehaviour
     [SerializeField] int _badEnemyLimit;
     [SerializeField] int _badSpawnInterval;
 
+    [SerializeField] int badDelay;
+    [SerializeField] int rareDelay;
+
     private void Start()
     {
         InstantiateEnemies(Data, RareData, BadData);
         InvokeRepeating(nameof(SpawnEnemy), 1f, _spawnInterval);
-        InvokeRepeating(nameof(SpawnRareEnemy), 1f, _rareSpawnInterval);
-        InvokeRepeating(nameof(SpawnBadEnemy), 1f, _badSpawnInterval);
+        Invoke(nameof(SpawnRares), rareDelay);
+        Invoke(nameof(SpawnBads), badDelay);
 
     }
 
@@ -83,7 +86,7 @@ public class FlySpawner : MonoBehaviour
     }
     private void SpawnEnemy()
     {
-        var spawnPosition = transform.position;
+        var spawnPosition = new Vector3(Random.Range(-6.5f, 6.5f), Random.Range(-1f, 3f), 0);
         var enemy = _availableEnemies.Dequeue();
         enemy.transform.position = spawnPosition;
         enemy.gameObject.SetActive(true);
@@ -91,17 +94,27 @@ public class FlySpawner : MonoBehaviour
 
     private void SpawnRareEnemy()
     {
-        var spawnPosition = transform.position;
+        var spawnPosition = new Vector3(Random.Range(-6.5f, 6.5f), Random.Range(-1f, 3f), 0);
         var enemy = _availableRareEnemies.Dequeue();
         enemy.transform.position = spawnPosition;
         enemy.gameObject.SetActive(true);
     }
     private void SpawnBadEnemy()
     {
-        var spawnPosition = transform.position;
+        var spawnPosition = new Vector3(Random.Range(-6.5f, 6.5f), Random.Range(-1f, 3f), 0);
         var enemy = _availableBadEnemies.Dequeue();
         enemy.transform.position = spawnPosition;
         enemy.gameObject.SetActive(true);
+    }
+
+    private void SpawnRares()
+    {
+        InvokeRepeating(nameof(SpawnRareEnemy), 1f, _rareSpawnInterval);
+    }
+
+    private void SpawnBads()
+    {
+        InvokeRepeating(nameof(SpawnBadEnemy), 1f, _badSpawnInterval);
     }
 
 }

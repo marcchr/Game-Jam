@@ -33,6 +33,13 @@ public class GameManager : Singleton<GameManager>
 
     public bool isGameOver = false;
 
+    public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI highScoreText;
+
+    private void Start()
+    {
+        highScoreText.text = ("High Score: " + PlayerPrefs.GetInt("SavedHighScore").ToString());
+    }
     void Update()
     {
         UpdateStopwatch();
@@ -147,5 +154,22 @@ public class GameManager : Singleton<GameManager>
             currentScore = 0;
         }
         currentScoreText.text = currentScore.ToString();
+    }
+
+    public void HighScoreUpdate()
+    {
+        if (PlayerPrefs.HasKey("SavedHighScore"))
+        {
+            if (currentScore > PlayerPrefs.GetInt("SavedHighScore"))
+            {
+                PlayerPrefs.SetInt("SavedHighScore", currentScore);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SavedHighScore", currentScore);
+        }
+
+        finalScoreText.text = currentScore.ToString();
     }
 }

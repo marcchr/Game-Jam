@@ -43,10 +43,11 @@ public class RareEnemyController : MonoBehaviour
     {
         while (_currentHealth > 0)
         {
-            SoundFXManager.Instance.PlaySoundFXClip(spawnSoundClip, transform, 1f);
             Vector3 randomPoint = Random.insideUnitCircle.normalized * Data.searchRadius;
             targetPos = new Vector3(transform.position.x + randomPoint.x, transform.position.y + randomPoint.y, 0);
             yield return new WaitForSeconds(Data.movementFrequency);
+            SoundFXManager.Instance.PlaySoundFXClip(spawnSoundClip, transform, 1f);
+
         }
     }
 
