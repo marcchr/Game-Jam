@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundFXManager : Singleton<SoundFXManager>
 {
     [SerializeField] private AudioSource soundFXObject;
+
     public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         //spawn gameObject
