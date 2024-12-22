@@ -19,4 +19,4 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 1
   <searchRadius>k__BackingField: 1
   <movementFrequency>k__BackingField: 0.1
-  <pointsWorth>k__BackingField: -5
+  <pointsWorth>k__BackingField: -3

@@ -112,7 +112,11 @@ public class TongueShoot : Singleton<TongueShoot>
         {
             enemy.TakeDamage(1);
             GetComponent<ParticleSystem>().Play();
-            hungerTimer++;
+            hungerTimer += 3f;
+            if (hungerTimer > hungerDuration)
+            {
+                hungerTimer = hungerDuration;
+            }
             dyingTimer = 0f;
         }
 
@@ -129,7 +133,11 @@ public class TongueShoot : Singleton<TongueShoot>
         {
             badEnemy.TakeDamage(1);
             GetComponent<ParticleSystem>().Play();
-            hungerTimer += 0.5f;
+            hungerTimer++;
+            if (hungerTimer > hungerDuration)
+            {
+                hungerTimer = hungerDuration;
+            }
             dyingTimer = 0f;
 
         }
